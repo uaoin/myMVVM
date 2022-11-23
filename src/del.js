@@ -1,3 +1,8 @@
+/**
+ * vm.$delete方法
+ * 删除一个响应式对象
+ */
+
 import {
   isUndef,
   isPrimitive,

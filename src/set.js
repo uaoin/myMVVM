@@ -1,5 +1,6 @@
 /**
- *
+ * vm.$set 方法
+ * 用于给一个响应式对象添加属性
  */
 
 import defineRective from "./defineReactive.js";
