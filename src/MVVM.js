@@ -19,6 +19,10 @@ export default class MVVM {
       // 用数据和元素进行编译
       new Compile(this.$el, this);
     }
+    //执行测试
+    if (options.test) {
+      options.test.apply(this);
+    }
   }
 
   proxyData(data) {

@@ -55,3 +55,10 @@ export function hasOwn(obj, key) {
 }
 
 export const isArray = Array.isArray;
+
+//写一个delay方法方便测试
+export function delay(timeout = 2000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}

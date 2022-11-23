@@ -11,14 +11,20 @@
     <div id="app">
       <h1>{{title}}</h1>
       {{textNode}}
-      <input type="text" s-model="message.text" />
-      <div>--------------</div>
+      <hr />
+      输入测试双向绑定：<input type="text" s-model="message.text" />
       <div>{{message.text}}{{a}}</div>
-      <div>{{array}}</div>
-      <div>obj.property:{{obj.property}}</div>
+      <hr />
+      <h3>{{demoText}}</h3>
+      <hr />
+      <div>数组：{{array}}</div>
+      <div>对象obj.property:{{obj.property}}</div>
+      <hr />
     </div>
     <script type="module">
+      //注意添加.js后缀
       import MVVM from "/src/MVVM.js";
+      import { delay } from "/src/utils.js";
       //将数据挂载在vm上
       const vm = new MVVM({
         //el是node或selector
@@ -28,8 +34,37 @@
           a: "-我是a，紧跟在text后-",
           title: "MVVM",
           textNode: "我是文本节点",
-          array: [0, 1, 2],
+          array: [0, 1],
           obj: {},
+          demoText: "",
+        },
+        test: async function () {
+          this.demoText = "测试数组的响应式 和 $set $delete";
+          await delay();
+          this.demoText = "测试数组响应式:this.array.push(3,4)";
+          await delay();
+          this.array.push(3, 4);
+          this.demoText = "测试数组响应式:this.array.push(3,4),成功!";
+          await delay();
+          this.demoText = "测试数组响应式:this.array.pop()";
+          await delay();
+          this.array.pop();
+          this.demoText = "测试数组响应式:this.array.pop(),成功!";
+          await delay();
+          this.demoText =
+            "测试对象$set:this.$set(this.obj.'property','测试$set')";
+          await delay();
+          this.$set(this.obj, "property", "测试$set");
+          this.demoText =
+            "测试对象$set:this.$set(this.obj.'property','测试$set'),成功!";
+          await delay();
+          this.demoText = "测试对象$set:this.$delete(this.obj.'property')";
+          await delay();
+          this.$delete(this.obj, "property");
+          this.demoText =
+            "测试对象$set:this.$delete(this.obj.'property'),成功!";
+          await delay();
+          this.demoText = "结束,刷新重看";
         },
       });
       // console.log("ViewModel", vm);
@@ -40,22 +75,22 @@
       // console.log(vm.array)
 
       // 响应式
-      vm.array.push(3, 4, 5, 6, 7, 8, 9);
-      console.log(vm.array);
-      //测试delete
-      vm.$delete(vm.array, 9);
-      vm.$delete(vm.array, 0);
+      // vm.array.push(3, 4, 5, 6, 7, 8, 9);
+      // console.log(vm.array);
+      // //测试delete
+      // vm.$delete(vm.array, 9);
+      // vm.$delete(vm.array, 0);
 
       //不是响应式
       // vm.obj.property = 123;
 
       //测试set
-      vm.$set(vm.obj, "property", 456);
+      // vm.$set(vm.obj, "property", 456);
 
       //2秒后删除
-      setTimeout(() => {
-        vm.$delete(vm.obj, "property");
-      }, 2000);
+      // setTimeout(() => {
+      //   vm.$delete(vm.obj, "property");
+      // }, 2000);
     </script>
   </body>
 </html>
