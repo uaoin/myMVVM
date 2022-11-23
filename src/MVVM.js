@@ -1,7 +1,10 @@
 import { Compile } from "./compile.js";
 import observe from "./observe.js";
+import { set } from "./set.js";
+import { del } from "./del.js";
 export default class MVVM {
   constructor(options) {
+    this._isMVVM = true;
     // 先把需要的东西挂载到实例(this)上
     this.$el = options.el;
     this.$data = options.data;
@@ -10,7 +13,7 @@ export default class MVVM {
     // 总线 const eventBus = new Vue()
     if (this.$el) {
       // 数据劫持
-      observe(this.$data);
+      observe(this.$data, true);
       //代理数据
       this.proxyData(this.$data);
       // 用数据和元素进行编译
@@ -31,4 +34,9 @@ export default class MVVM {
       });
     });
   }
+
+  static set = set;
+  static delete = del;
+  $set = set;
+  $delete = del;
 }

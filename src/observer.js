@@ -22,6 +22,9 @@ import Dep from "./dep.js";
 
 class Observer {
   constructor(value) {
+    this.value = value;
+    //The number of components who are using this observer.
+    this.vmCount = 0;
     // 每个Observer的实例身上,都有一个dep
     this.dep = new Dep();
     // __ob__ 用来存Observer实例(this) 不可枚举

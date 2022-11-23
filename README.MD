@@ -3,6 +3,6 @@
  - 没用Webpack，懒得用。顺便试试在标签中写ES6模块化
  - 数组的原型链也改写了
 
-还没写的：
-- $delete $set
-- computed
+TODO：
+- [x] $delete $set
+- [x] computed

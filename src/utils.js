@@ -26,3 +26,32 @@ export function parsePath(str) {
   //   }, obj);
   // };
 }
+
+//判断v是否为undefined或者null
+export function isUndef(v) {
+  return v === undefined || v === null;
+}
+
+//判断是否为原始类型值 (string number symbol boolean)
+export function isPrimitive(value) {
+  return (
+    typeof value === "string" ||
+    typeof value === "number" ||
+    typeof value === "symbol" ||
+    typeof value === "boolean"
+  );
+}
+
+// 判断val是否为合法的数组索引
+export function isValidArrayIndex(val) {
+  const n = parseFloat(String(val));
+  return n >= 0 && Math.floor(n) === n && isFinite(val);
+}
+
+//hasOWnProperty
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+export function hasOwn(obj, key) {
+  return hasOwnProperty.call(obj, key);
+}
+
+export const isArray = Array.isArray;

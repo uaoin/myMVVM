@@ -19,7 +19,7 @@
 
 import { Observer } from "./observer.js";
 
-function observe(value) {
+function observe(value, asRootData = false) {
   // 如果value不是对象什么都不做
   if (typeof value != "object") return;
   let ob;
@@ -29,6 +29,9 @@ function observe(value) {
   } else {
     // 对象中的元素未被observe
     ob = new Observer(value);
+  }
+  if (asRootData && ob) {
+    ob.vmCount++;
   }
   return ob;
 }
