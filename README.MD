@@ -52,3 +52,37 @@ vm.$data // The Model
 - angular1.x中通过脏值检测来实现MVVM模式
 - Vue：Object.defineProperty + 发布订阅
 - Vue3:利用ES6新特性Proxy和Reflect
+
+#  实现一个vue
+
+代码注释写的很详细
+
+## 需要实现
+
+- 模板编译（Compile）
+- 数据劫持（Observer）
+- 发布者（Observer+Dep）
+- 订阅者/观察者（Watcher）
+
+
+## Vue基础案例
+
+项目结构  
+
+```
+index.html
+src
+  compile.js         模板编译类
+  MVVM.js            MVVM类
+  observe.js         observe方法
+  observer.js        observer类
+  defineReactive.js  数据劫持方法
+  array.js           数组的原型链改写
+  watcher.js         Watcher类
+  set.js             Vue.set(vm.$set)方法
+  del.js             Vue.delete(vm.$delete)方法
+  dep.js             Dep类
+  utils.js           一些辅助函数
+```
+
+**接下来看代码吧我TM懒得写了,dota2启动!**
