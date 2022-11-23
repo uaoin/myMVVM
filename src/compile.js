@@ -124,11 +124,14 @@ const CompileUtil = {
       new Watcher(vm.$data, args[1], newValue => {
         // 如果数据变化了,文本节点需要重新获取依赖的属性更新文本中的内容
         updateFn && updateFn(node, this.getTextVal(vm, expr));
+        // 这样写不行 因为{{message.text}}和{{a}}都要替换
+        // updateFn && updateFn(node, newValue);
       });
     });
     //用处理好的节点和内容进行编译
     updateFn && updateFn(node, value);
   },
+
   getTextVal(vm, expr) {
     //获取编译文本后的结果
     return expr.replace(/{{([^}]+)}}/g, (match, p, offset, string) => {

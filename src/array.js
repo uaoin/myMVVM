@@ -65,9 +65,12 @@ for (const methodName of methodsNeedChange) {
 
       console.log(`正在使用被修改后的${methodName}方法`);
 
-      ob.dep.notify();
       //恢复功能 this是调用此函数的数组
-      return originMethod.apply(this, args);
+      const _return = originMethod.apply(this, args);
+      //先使用方法再notify 不然notify时数据还没改变
+      ob.dep.notify();
+      //返回返回值
+      return _return
     },
     false
   ); //设置为不可枚举

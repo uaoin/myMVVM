@@ -54,6 +54,7 @@ export default class Watcher {
 
   getAndInvoke(cb) {
     const value = this.getter(this.target);
+    console.log(value, 'watcher')
 
     if (value !== this.value || typeof value == "object") {
       const oldValue = this.value;
